@@ -2,7 +2,7 @@ import requests
 import csv
 from decouple import config
 from datetime import datetime, timedelta
-from pprint import pprint
+from pprint import pprint 
 # datetime(2019,7,19) - timedelta(weeks=i) # i주 이전의 시각을 구함.
 # targetDt.strftime('%Y%m%d') => 20190713형식으로 해줌.
 
@@ -34,7 +34,7 @@ for i in range(50):
                 'movieNm': movie.get('movieNm'),
                 'audiAcc': movie.get('audiAcc')
             }
-    pprint(result)
+  #  pprint(result)
 
 with open('boxOffice.csv', 'w', encoding='utf-8', newline='') as f:
     fieldnames = ('movieCd', 'movieNm', 'audiAcc')
