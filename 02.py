@@ -3,13 +3,13 @@ import requests
 from decouple import config
 from pprint import pprint
 
-# 2 csv.DictReader()
+# 1 csv.DictReader() _ boxoffice에서 영화코드 읽어오기
 with open('boxoffice.csv', newline='', encoding='utf-8') as f:
     reader = csv.DictReader(f) # 읽어올 파일만 입력=>reader에 파일이 들어있음
     # 한 줄씩 읽는다.
     movie_Cd=[]
     for row in reader:
-        movie_Cd.append(row['movieCd'])
+        movie_Cd.append(row['영화 대표코드'])
 #pprint(movie_Cd)
 
 result={}
@@ -29,21 +29,21 @@ for code in movie_Cd:
         code = movies_info.get('movieCd')
 
         result[code] = {
-                    'movieCd': movies_info.get('movieCd'),
-                    'movieNm': movies_info.get('movieNm'),
-                    'movieNmEn': movies_info.get('movieNmEn'),
-                    'movieNmOg': movies_info.get('movieNmOg'),
-                    'watchGradeNm': movies_info.get('audits')[0].get('watchGradeNm') if movies_info.get('audits') else None,
-                    'openDt': movies_info.get('openDt'),
-                    'showTm': movies_info.get('showTm'),
-                    'genreNm': movies_info.get('genres')[0].get('genreNm'),
-                    'directors': movies_info.get('directors')[0].get('peopleNm') if movies_info.get('directors') else None
+                    '영화 대표코드': movies_info.get('movieCd'),
+                    '영화명(국문)': movies_info.get('movieNm'),
+                    '영화명(영문)': movies_info.get('movieNmEn'),
+                    '영화명(원문)': movies_info.get('movieNmOg'),
+                    '관람등급': movies_info.get('audits')[0].get('watchGradeNm') if movies_info.get('audits') else None,
+                    '개봉연도': movies_info.get('openDt'),
+                    '상영시간': movies_info.get('showTm'),
+                    '장르': movies_info.get('genres')[0].get('genreNm'),
+                    '감독명': movies_info.get('directors')[0].get('peopleNm') if movies_info.get('directors') else None
             }
 
 
 
 with open('movie.csv', 'w', encoding='utf-8', newline='') as f:
-    fieldnames = ('movieCd', 'movieNm', 'movieNmEn', 'movieNmOg', 'watchGradeNm', 'openDt', 'showTm', 'genreNm', 'directors')
+    fieldnames = ('영화 대표코드', '영화명(국문)', '영화명(영문)', '영화명(원문)', '관람등급', '개봉연도', '상영시간', '장르', '감독명')
     writer = csv.DictWriter(f, fieldnames=fieldnames)
     writer.writeheader()
     for value in result.values():

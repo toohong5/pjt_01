@@ -10,7 +10,7 @@ with open('movie.csv', newline='', encoding='utf-8') as f:
     reader = csv.DictReader(f) # 읽어올 파일만 입력=>reader에 파일이 들어있음
     # 한 줄씩 읽는다.
     for row in reader:
-        people_Nm = (row['directors'],row['movieNm']) # (감독명, 영화명) 튜플형식으로 저장.
+        people_Nm = (row['감독명'],row['영화명(국문)']) # (감독명, 영화명) 튜플형식으로 저장.
         key = config('KEY')
         url = f'http://www.kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleList.json?key={key}&peopleNm={people_Nm[0]}'
         api_data = requests.get(url).json() # 크롬에서 보이는 것과 같은 모습으로 표현해줌
@@ -35,17 +35,3 @@ with open('director.csv', 'w', encoding='utf-8', newline='') as f:
     for value in result.values():
         print(value)
         writer.writerow(value)
-
-        
-
-# key = config('KEY')
-# url2 = f'http://www.kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleList.json?key={key}&peopleNm={peopleNm}'
-# api_data2 = requests.get(url2).json()
-
-
-# people_cd=[]
-# for i in range(0,len(api_data2.get('peopleListResult').get('peopleList'))):
-#     if people_Nm[i] in api_data2.get('peopleListResult').get('peopleList')[i].get('peopleNm'):
-#         people_cd.append(api_data2.get('peopleListResult').get('peopleList')[i].get('peopleCd'))
-
-# pprint(people_cd)

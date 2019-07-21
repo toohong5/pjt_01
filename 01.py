@@ -7,7 +7,7 @@ from pprint import pprint
 # targetDt.strftime('%Y%m%d') => 20190713형식으로 해줌.
 
 # --------------------------------------------------------------------------------------------------------------------------------------
-# 선생님 풀이
+
 result = {}
 
 for i in range(50):
@@ -30,14 +30,14 @@ for i in range(50):
         # 그게 가장 마지막 주 데이터다. 즉 기존 영화코드가 있다면 딕셔너리에 넣지 않는다.
         if code not in result: # result안에 없다면 추가
             result[code] = {
-                'movieCd': movie.get('movieCd'),
-                'movieNm': movie.get('movieNm'),
-                'audiAcc': movie.get('audiAcc')
+                '영화 대표코드': movie.get('movieCd'),
+                '영화명': movie.get('movieNm'),
+                '해당일 누적관객수': movie.get('audiAcc')
             }
   #  pprint(result)
 
 with open('boxOffice.csv', 'w', encoding='utf-8', newline='') as f:
-    fieldnames = ('movieCd', 'movieNm', 'audiAcc')
+    fieldnames = ('영화 대표코드', '영화명', '해당일 누적관객수')
     writer = csv.DictWriter(f, fieldnames=fieldnames)
     writer.writeheader()
     for value in result.values():
