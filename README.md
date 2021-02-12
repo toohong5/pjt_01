@@ -79,7 +79,7 @@ with open('boxOffice.csv', 'w', encoding='utf-8', newline='') as f:
 
 ```
 
-- boxOffice.csv
+- `boxOffice.csv`
 
   - csv파일에는 50주간 데이터 중에 주간 박스오피스 TOP10 데이터가 저장되어있다.
   - 영화별로 영화 대표코드, 영화명, 해당일 누적관객수가 기록되어 있고 누적관객수는 가장 최신정보를 반영했다.
